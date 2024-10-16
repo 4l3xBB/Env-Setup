@@ -134,6 +134,10 @@ super + alt + {h,j,k,l}
 super + shift + f
     /usr/bin/firefox
 
+# Chromium
+super + shift + c
+    /usr/bin/chromium
+
 # Open Burpsuite (HTTP Proxy)
 super + shift + b
     /usr/bin/burpsuite-launcher
@@ -141,12 +145,3 @@ super + shift + b
 # i3lock-fancy (Screen Lock)
 super + shift + x
     /usr/bin/i3lock-fancy
-
-#@ _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-#@	    __________  ______
-#@	   / ____/ __ \/ ____/
-#@	  / __/ / / / / /_    
-#@	 / /___/ /_/ / __/    
-#@	/_____/\____/_/       
-#@
-#@ _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_

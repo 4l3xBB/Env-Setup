@@ -2,6 +2,26 @@
 ####################  CUSTOM FUNCTIONS  ####################
 ############################################################
 
+# Pentesting Folder Structure
+
+mkt()
+{
+    local -- _dir=
+    local -a -- _dirs=(
+        evidence
+        logs
+        scans
+        scope
+        tools
+    )
+    for _dir in "${_dirs[@]}"
+    do
+        mkdir -p -- "$_dir"
+        [[ $_dir == "evidence" ]] &&
+            mkdir -p -- "$_dir"/{creds,data,screenshots}
+    done
+}
+
 # Inner Module | Right Bar | Polybar
 # Validate IP Address
 

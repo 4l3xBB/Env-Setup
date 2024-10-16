@@ -82,26 +82,25 @@ bindkey '\C-x\C-e' edit-command-line
 ## ---------------------------------------- ##
 ## ----- Use modern completion system ----- ##
 ## ---------------------------------------- ##
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
- 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+if autoload -Uz compinit && compinit ; then
+  zstyle ':completion:*' auto-description 'specify: %d'
+  zstyle ':completion:*' completer _expand _complete _correct _approximate
+  zstyle ':completion:*' format 'Completing %d'
+  zstyle ':completion:*' group-name ''
+  zstyle ':completion:*' menu select=2
+  eval "$(dircolors -b)"
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+  zstyle ':completion:*' list-colors ''
+  zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+  zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+  zstyle ':completion:*' menu select=long
+  zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+  zstyle ':completion:*' use-compctl false
+  zstyle ':completion:*' verbose true
+   
+  zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+  zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+fi
 
 ############################################################
 #########################   FZF    #########################
@@ -109,10 +108,14 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-## ----------------------------------------------- ##
-## ----- FZF Parameter (C-k Up and C-j Down) ----- ##
-## ----------------------------------------------- ##
-#export FZF_DEFAULT_OPTS='--bind=ctrl-r:toggle-sort,ctrl-u:up,ctrl-d:down'
+## ------------------------------ ##
+## ----- FZF HANDY FEATURES ----- ##
+## ------------------------------ ##
+# FZF Display Format Modified ~ File Preview via BAT
+export FZF_DEFAULT_OPTS="--height 40% --border --preview 'bat --color=always {} 2> /dev/null'"
+
+# FD Instead of Find as File Search
+export FZF_DEFAULT_COMMAND="fd --type f"
 
 ############################################################
 #########################   MISC   #########################
@@ -135,6 +138,12 @@ export EDITOR=/opt/nvim/nvim-linux64/bin/nvim
 ## ----- PATH Parameter ----- ##
 ## -------------------------- ##
 export PATH=/opt/kitty/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/sbin:/opt/nvim/nvim-linux64/bin:/home/al3xbb/.fzf/bin:/home/al3xbb/.cargo/bin
+
+## ------------------------------- ##
+## ----- BATCAT in Man Pages ----- ##
+## ------------------------------- ##
+# https://github.com/sharkdp/bat?tab=readme-ov-file#integration-with-other-tools 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 ## ------------------------------------ ##
 ## ----- LSD Parameter (Non-Bold) ----- ##
@@ -164,6 +173,7 @@ umountLocate
 if [[ -f /home/al3xbb/.config/zsh/src/custom.zsh ]] ; then
     source /home/al3xbb/.config/zsh/src/custom.zsh
 fi
+
 
 #@ _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 #@	    __________  ______

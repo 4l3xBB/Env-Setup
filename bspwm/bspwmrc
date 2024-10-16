@@ -41,12 +41,3 @@ checkProcess picom || launchProcess picom
 # Avoid Compatibility errors with Java applications (Burpsuite...)
 # Change the Windows Manager Name from bspwm to LG3D (Only the name)
 wmname LG3D &
-
-#@ _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-#@	    __________  ______
-#@	   / ____/ __ \/ ____/
-#@	  / __/ / / / / /_    
-#@	 / /___/ /_/ / __/    
-#@	/_____/\____/_/       
-#@
-#@ _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
