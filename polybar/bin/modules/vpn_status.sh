@@ -2,7 +2,7 @@
 
 checkVPNiface ()
 {
-  local -- _vpnIface=$( /usr/sbin/ifconfig tun0 &> /dev/null )
+  local -- _vpnIface=$( /usr/sbin/ifconfig tun0 2> /dev/null )
 
   if [[ -n $_vpnIface ]] ; then
     printf "%%{F#1bbf3e}󰆧 %%{F#ffffff}$( /usr/sbin/ifconfig tun0 | awk '/inet\s/ { print $2 }' )%%{u-}\n"
